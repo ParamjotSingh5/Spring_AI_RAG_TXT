@@ -37,7 +37,7 @@ You almost never creates a pod directly.
 
 Containers within a pod share networking and storage.
 
-![image.png](image.png)
+![image.png](Resource%20type%20in%20Kubernetes/image.png)
 
 There are many configuration available on Pod resource
 
@@ -158,9 +158,9 @@ Get active ReplicaSet
 
 `kubectl get rs`
 
-![image.png](image%201.png)
+![image.png](Resource%20type%20in%20Kubernetes/image%201.png)
 
-![image.png](image%202.png)
+![image.png](Resource%20type%20in%20Kubernetes/image%202.png)
 
 Deleting a pod, ReplicaSet controller will initiate a new pod using this configuration.
 
@@ -168,7 +168,7 @@ Deleting a pod, ReplicaSet controller will initiate a new pod using this configu
 
 And now check active pods, notice deleted pod is replaced by a new one.
 
-![image.png](image%203.png)
+![image.png](Resource%20type%20in%20Kubernetes/image%203.png)
 
 Pods naming convention in ReplicaSet
 
@@ -218,7 +218,7 @@ Get details of Deployment
 
 *Initial state*
 
-![image.png](image%204.png)
+![image.png](Resource%20type%20in%20Kubernetes/image%204.png)
 
 Rollout update in deployment definition with
 
@@ -240,7 +240,7 @@ Get revisions on a deployment
 
 *Rollout state*
 
-![image.png](image%205.png)
+![image.png](Resource%20type%20in%20Kubernetes/image%205.png)
 
 # Service
 
@@ -260,7 +260,7 @@ Get service along with their selector
 
 `kubectl get service -o wide`
 
-![image.png](image%206.png)
+![image.png](Resource%20type%20in%20Kubernetes/image%206.png)
 
 `Deployment`
 
@@ -701,7 +701,7 @@ helm upgrade --install ingress-nginx ingress-nginx \
           --version 4.10.1
 ```
 
-![image.png](image%207.png)
+![image.png](Resource%20type%20in%20Kubernetes/image%207.png)
 
 Requests from Ingress controller comes to this Ingress resource → `Ingress.minimal-nginx.yaml` 
 
@@ -782,13 +782,13 @@ Ephemeral Storage: Containers can use the `temporary filesystem` (tmpfs) to re
 
 Ephemeral Volume: An ephemeral `Volume's` lifetime is coupled to the `Pod`. It enables safe container restarts and sharing of data between containers within a `Pod`.
 
-![image.png](image%208.png)
+![image.png](Resource%20type%20in%20Kubernetes/image%208.png)
 
 Persistence Volume: K8s Provides API for creating, managing and consuming storage that lives beyond the live of an individual pod, or even cluster. A `PV` is cluster-wide: it can be attached to any Pod running on any Node in the cluster.
 
 [AWS blog on Volumes](https://aws.amazon.com/blogs/storage/persistent-storage-for-kubernetes/#:~:text=Persistent%20volume%20claims&Kubernetes%20has%20an%20additional%20layer,%3A%20the%20PersistentVolumeClaim%20(PVC)).
 
-![image.png](image%209.png)
+![image.png](Resource%20type%20in%20Kubernetes/image%209.png)
 
 A `PV` is an abstract component, and actual physical storage must come from somewhere. → `CSI`, `NFS`, `Local`
 
@@ -934,7 +934,7 @@ Each service account is bound to a Kubernetes namespace. Every namespace gets a
 3. `Role Binding`: grants the permissions defined in a role to *subjects* (users, groups, or service accounts). A `RoleBinding` grants permissions within a specific namespace.
 4. A worker consumes the `ServiceAccount` to get access rights of a `Role`
 
-![image.png](image%2010.png)
+![image.png](Resource%20type%20in%20Kubernetes/image%2010.png)
 
 In a similar context, `ClusterRole` and **`ClusterRoleBinding`** are resources that can be used to grant permission cluster wide resource (nodes, `/healthz` endpoint, Pods across all namespaces, secrets).
 

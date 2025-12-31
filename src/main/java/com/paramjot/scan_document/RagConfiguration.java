@@ -1,4 +1,4 @@
-package com.paramjot.scan_resume;
+package com.paramjot.scan_document;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,10 +23,9 @@ public class RagConfiguration {
 
     private static final Logger log = LoggerFactory.getLogger(RagConfiguration.class);
 
-    @Value("vectorstore.json")
-    private String vectorStoreName;
+    private String vectorStoreName = "vectorstore.json";
 
-    @Value("classpath:/docs/Resource_type_in_Kubernetes.md")
+    @Value("classpath:/docs/k8s_resource_types_readme_content/resource_type_in_kubernetes.md")
     private Resource pdf_doc;
 
     @Bean
@@ -42,9 +41,9 @@ public class RagConfiguration {
         } else {
             log.info("Vector Store File Does Not Exist, loading documents");
             TextReader textReader = new TextReader(pdf_doc);
-            textReader.getCustomMetadata().put("filename", "az_kubectl_commands.txt");
+            textReader.getCustomMetadata().put("filename", "resource_type_in_kubernetes.md");
             List<Document> documents = textReader.get();
-            TextSplitter textSplitter = new TokenTextSplitter();
+            TextSplitter textSplitter = TokenTextSplitter.builder().withChunkSize(256).withMaxNumChunks(256).build();
             List<Document> splitDocuments = textSplitter.apply(documents);
             simpleVectorStore.add(splitDocuments);
             simpleVectorStore.save(vectorStoreFile);
@@ -55,7 +54,7 @@ public class RagConfiguration {
     }
 
     private File getVectorStoreFile() {
-        Path path = Paths.get("src", "main", "resources", "data");
+        Path path = Paths.get("src", "main", "resources");
         String absolutePath = path.toFile().getAbsolutePath() + "/" + vectorStoreName;
         return new File(absolutePath);
     }

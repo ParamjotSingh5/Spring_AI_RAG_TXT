@@ -1,1 +1,1 @@
-rootProject.name = "scan_resume"
+rootProject.name = "scan_document"

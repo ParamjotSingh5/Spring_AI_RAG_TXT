@@ -1,4 +1,4 @@
-package com.paramjot.scan_resume.controller;
+package com.paramjot.scan_document.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.Prompt;

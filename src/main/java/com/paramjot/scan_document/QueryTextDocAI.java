@@ -1,4 +1,4 @@
-package com.paramjot.scan_resume;
+package com.paramjot.scan_document;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
